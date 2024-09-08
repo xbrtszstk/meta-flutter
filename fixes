@@ -1,0 +1,33 @@
+dynamic-layers -> requires clang-layer
+
+recipes-graphics
+    libwebrtc -> OK, but requires multimedia-layer for pipewire
+    rive-taffy-ffi -> ERROR: rive-taffy-ffi-0.3.0-r0 do_install: Did not find anything to install
+    toyota -> ?
+
+recipes-platform
+    packagegroup-flutter-sdk-deps -> requires clang-layer
+
+bitbake -k \
+baseflow-flutter-geolocator-linux-geolocator-linux-example \
+bernardpumped-ped-pumped-end-device \
+bluefireteam-audioplayers-packages-audioplayers-example \
+davbfr-dart-pdf-demo-printing-demo \
+davbfr-dart-pdf-printing-example \
+fluttercommunity-plus-plugins-packages-battery-plus-battery-plus-example \
+fluttercommunity-plus-plugins-packages-connectivity-plus-connectivity-plus-example \
+fluttercommunity-plus-plugins-packages-device-info-plus-device-info-plus-example \
+fluttercommunity-plus-plugins-packages-network-info-plus-network-info-plus-example \
+fluttercommunity-plus-plugins-packages-package-info-plus-package-info-plus-example \
+fluttercommunity-plus-plugins-packages-sensors-plus-sensors-plus-example \
+fluttercommunity-plus-plugins-packages-share-plus-share-plus-example \
+gskinnerteam-flutter-wonderous-app-wonders \
+knopp-layer-playground-layer-playground \
+meta-flutter-tests-textures-test-egl \
+meta-flutter-video-player-linux-example-video-player-example \
+mix1009-desktop-window-example-desktop-window-example \
+mogol-flutter-secure-storage-flutter-secure-storage-example \
+playx-flutter-playx-3d-scene-example-my-fox-example \
+rive-app-rive-flutter-example-rive-example \
+theyakka-qr-example \
+widgetbakery-pixel-snap-example
