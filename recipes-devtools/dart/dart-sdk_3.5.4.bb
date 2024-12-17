@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2020-2023 Joel Winarske. All rights reserved.
+# Copyright (c) 2020-2024 Joel Winarske. All rights reserved.
 #
 
 SUMMARY = "Dart SDK"
@@ -66,7 +66,7 @@ do_configure() {
     cd ${S}
 
     # prevent tmp path warning
-    cp ${WORKDIR}/gcc_toolchain.gni.in ${S}/build/toolchain/gcc_toolchain.gni
+    cp ${UNPACKDIR}/gcc_toolchain.gni.in ${S}/build/toolchain/gcc_toolchain.gni
     sed -i "s|@DEBUG_FLAGS@|${DEBUG_FLAGS}|g" ${S}/build/toolchain/gcc_toolchain.gni
 
     # we only build one mode type
