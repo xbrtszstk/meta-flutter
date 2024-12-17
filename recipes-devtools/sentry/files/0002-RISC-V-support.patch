@@ -1,4 +1,5 @@
 From a47ef37dcf1830cc71f1144a87f67a0cd5d8b8a3 Mon Sep 17 00:00:00 2001
+Upstream-Status: Inappropriate
 From: Joel Winarske <joel.winarske@gmail.com>
 Date: Wed, 27 Mar 2024 06:33:55 -0700
 Subject: [PATCH] RISC-V support
