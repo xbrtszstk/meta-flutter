@@ -78,7 +78,7 @@ do_configure() {
     # configure toolchain file
     #
 
-    cp ${WORKDIR}/toolchain.gn.in ${S}/build/toolchain/linux/BUILD.gn
+    cp ${UNPACKDIR}/toolchain.gn.in ${S}/build/toolchain/linux/BUILD.gn
 
     sed -i "s|@GN_TARGET_ARCH_NAME@|${GN_TARGET_ARCH_NAME}|g" ${S}/build/toolchain/linux/BUILD.gn
     sed -i "s|@TARGET_SYS@|${TARGET_SYS}|g"                   ${S}/build/toolchain/linux/BUILD.gn
