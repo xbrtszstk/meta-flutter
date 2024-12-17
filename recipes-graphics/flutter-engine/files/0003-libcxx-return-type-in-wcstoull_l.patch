@@ -1,4 +1,5 @@
 From 939f5a33711370697f9ad1de4267cfc7399dfe86 Mon Sep 17 00:00:00 2001
+Upstream-Status: Inappropriate
 From: Sylvestre Ledru <sylvestre@debian.org>
 Date: Sun, 8 Jan 2023 00:32:42 +0100
 Subject: [PATCH] libc++: bring back the unsigned in the return type in

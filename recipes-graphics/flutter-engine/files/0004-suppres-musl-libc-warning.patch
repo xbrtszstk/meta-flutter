@@ -1,4 +1,5 @@
 From 78672cfb355bc4dae7f6729b52858798a11a869d Mon Sep 17 00:00:00 2001
+Upstream-Status: Inappropriate
 From: andryblack <blackicebox@gmail.com>
 Date: Mon, 7 Oct 2024 01:14:14 +0300
 Subject: [PATCH] suppres musl libc warning
