@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2020-2023 Joel Winarske. All rights reserved.
+# Copyright (c) 2020-2024 Joel Winarske. All rights reserved.
 #
 
 SUMMARY = "Flutter Engine"
@@ -235,6 +235,7 @@ do_compile() {
         ninja -C "${BUILD_DIR}" $PARALLEL_MAKE
     done
 }
+do_compile[depends] += "ninja-native:do_populate_sysroot"
 do_compile[progress] = "outof:^\[(\d+)/(\d+)\]\s+"
 
 do_install() {
