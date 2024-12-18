@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2020-2023 Joel Winarske. All rights reserved.
+# Copyright (c) 2020-2024 Joel Winarske. All rights reserved.
 #
 
 SUMMARY = "Flutter makes it easy and fast to build beautiful apps for mobile and beyond."
@@ -170,6 +170,6 @@ ALLOW_EMPTY:${PN} = "1"
 
 FILES:${PN} = "${datadir}/flutter/sdk"
 
-INSANE_SKIP:${PN} += "already-stripped file-rdeps"
+INSANE_SKIP:${PN} += "already-stripped file-rdeps buildpaths arch ldflags libdir"
 
 BBCLASSEXTEND = "native nativesdk"
