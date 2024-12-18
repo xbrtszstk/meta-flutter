@@ -27,7 +27,7 @@ PLUGINS_COMMIT ??= "bbcf71a9e90e55ca4b63229b9be4e6ba995eb241"
 
 SRC_URI = "\
     gitsm://github.com/toyota-connected/ivi-homescreen.git;protocol=https;branch=v2.0;name=homescreen \
-    git://github.com/toyota-connected/ivi-homescreen-plugins.git;protocol=https;branch=v2.0;name=plugins;destsuffix=${S}/ivi-homescreen-plugins \
+    git://github.com/toyota-connected/ivi-homescreen-plugins.git;protocol=https;branch=v2.0;name=plugins;destsuffix=ivi-homescreen-plugins \
 "
 SRCREV_FORMAT .= "_homescreen"
 SRCREV_homescreen = "${HOMESCREEN_COMMIT}"
