@@ -114,7 +114,7 @@ do_install() {
     cp -R ${BUILD_DIR}/dart-sdk/* ${D}${datadir}/dart-sdk/
 }
 
-INSANE_SKIP:${PN} = "already-stripped ldflags"
+INSANE_SKIP:${PN} = "already-stripped ldflags buildpaths"
 
 FILES:${PN} += "${datadir}"
 
