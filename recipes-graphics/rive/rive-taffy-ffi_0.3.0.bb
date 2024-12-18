@@ -36,7 +36,7 @@ SRC_URI[num-traits-0.2.18.sha256sum] = "da0df0e5185db44f69b44f26786fe401b6c293d1
 SRC_URI[slotmap-1.0.7.sha256sum] = "dbff4acf519f630b3a3ddcfaea6c06b42174d9a44bc70c620e9ed1649d58b82a"
 SRC_URI[version_check-0.9.4.sha256sum] = "49874b5167b65d7193b8aba1567f5c7d93d001cafc34600cee003eda787e483f"
 
-EXTRA_OECARGO_PATHS += "${WORKDIR}/taffy"
+EXTRA_OECARGO_PATHS += "${UNPACKDIR}/taffy"
 
 RUSTFLAGS += " -Clink-arg=-Wl,-soname=taffy_ffi.so.${PV}"
 
