@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2020-2023 Joel Winarske. All rights reserved.
+# Copyright (c) 2020-2024 Joel Winarske. All rights reserved.
 #
 
 SUMMARY = "Setup dev user"
@@ -9,8 +9,6 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
 
 SRC_URI = "file://dev_profile"
-
-S = "${WORKDIR}"
 
 APP_CONTAINER_USER_NAME ??= "dev"
 APP_CONTAINER_USER_ID ??= "5000"
@@ -28,7 +26,7 @@ USERADD_PARAM:${PN} = "-c '' -p '' -u ${APP_CONTAINER_USER_ID} -m ${APP_CONTAINE
 
 do_install () {
 
-	install -D -m 0664 ${APP_CONTAINER_USER_NAME}_profile ${D}/home/${APP_CONTAINER_USER_NAME}/.profile
+	install -D -m 0664 ${UNPACKDIR}/${APP_CONTAINER_USER_NAME}_profile ${D}/home/${APP_CONTAINER_USER_NAME}/.profile
 
 	# The new users and groups are created before the do_install
 	# step, so you are now free to make use of them:
