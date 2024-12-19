@@ -64,6 +64,7 @@ class GN(FetchMethod):
         ud.syncpath = os.path.join(gndir, ud.syncdir)
         ud.localfile = ud.syncdir + "-" + srcrev + ".tar.bz2"
         ud.localpath = os.path.join(gndir, ud.localfile)
+        ud.trying_to_fetch_with_gclient = False
 
         sync_opt = d.getVar("EXTRA_GN_SYNC")
         curl_ca_bundle = d.getVar('CURL_CA_BUNDLE')
@@ -72,12 +73,16 @@ class GN(FetchMethod):
         depot_tools_path = d.getVar("DEPOT_TOOLS")
         python3_folder = os.path.join(depot_tools_path, d.getVar("PYTHON3_PATH"))
         vpython_virtualenv_root = d.getVar("VPYTHON_VIRTUALENV_ROOT")
+        depot_tools_xdg_config_home = d.getVar("DEPOT_TOOLS_XDG_CONFIG_HOME")
 
         ud.basecmd = f'export DEPOT_TOOLS_UPDATE=0; \
+            export XDG_CONFIG_HOME={depot_tools_xdg_config_home}; \
             export CURL_CA_BUNDLE={curl_ca_bundle}; \
             export PATH="{depot_tools_path}:{python3_folder}:$PATH"; \
+            rm -rf $VPYTHON_VIRTUALENV_ROOT ||true; \
+            mkdir -p $VPYTHON_VIRTUALENV_ROOT; \
             export VPYTHON_VIRTUALENV_ROOT="{vpython_virtualenv_root}"; \
-            gclient config --spec \'{gclient_config}\' && \
+            gclient config --spec \'{gclient_config}\'; \
             gclient sync --force {sync_opt} --revision {srcrev} {parallel_make} -v'
 
         bb_number_threads = d.getVar("BB_NUMBER_THREADS", multiprocessing.cpu_count()).strip()
@@ -88,11 +93,13 @@ class GN(FetchMethod):
         bb.utils.mkdirhier(ud.syncpath)
         os.chdir(ud.syncpath)
 
+        ud.trying_to_fetch_with_gclient = True
         logger.debug2(f'Fetching {ud.url} using command "{ud.basecmd}"')
         bb.fetch2.check_network_access(d, ud.basecmd, ud.url)
         runfetchcmd(ud.basecmd, d, quiet, workdir=None)
         logger.debug2(f'Packing {ud.url} using command "{ud.packcmd}"')
         runfetchcmd(ud.packcmd, d, quiet, workdir=None)
+        ud.trying_to_fetch_with_gclient = False
 
     def localpath(self, ud, d):
         """
@@ -144,7 +151,12 @@ class GN(FetchMethod):
 
 
     def clean(self, ud, d):
-        bb.utils.remove(ud.syncpath, recurse=True)
+        # If an error occurs during the gclient sync, we aim to retain the partial sync directory.
+        # This helps prevent the need to re-fetch a large amount of source code only to encounter the same network issue again.
+        # The sync directory can grow up to 14GB.
+        # However, it will still be deleted when running bitbake -c cleanall.
+        if not ud.trying_to_fetch_with_gclient:
+            bb.utils.remove(ud.syncpath, recurse=True)
         bb.utils.remove(ud.localpath, recurse=True)
 
     def checkstatus(self, fetch, ud, d, try_again=True):
