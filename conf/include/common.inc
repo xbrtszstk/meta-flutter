@@ -329,7 +329,6 @@ python do_cleanall:append() {
     file = os.path.join(workspace, 'PUB_CACHE_ARCHIVE')
     if not os.path.exists(file):
         return
-
     localfile = ''
     with open(file, 'r') as f:
         localfile = f.read()
