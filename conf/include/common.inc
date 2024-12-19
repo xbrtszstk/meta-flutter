@@ -31,7 +31,6 @@ _REV = "${@d.getVar('SRCPV') or d.getVar('PV')}"
 PUB_CACHE_ARCHIVE = "flutter-pub-cache-${PN}-${_REV}-${FLUTTER_SDK_TAG}.tar.bz2"
 
 PUBSPEC_IGNORE_LOCKFILE ??= "0"
-PUBSPEC_ENFORCE_LOCKFILE ??= "0"
 
 FLUTTER_SDK = "${STAGING_DIR_NATIVE}/usr/share/flutter/sdk"
 
@@ -329,7 +328,6 @@ python do_cleanall:append() {
     file = os.path.join(workspace, 'PUB_CACHE_ARCHIVE')
     if not os.path.exists(file):
         return
-
     localfile = ''
     with open(file, 'r') as f:
         localfile = f.read()
