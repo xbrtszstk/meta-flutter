@@ -188,6 +188,7 @@ python do_archive_pub_cache() {
     localpath = os.path.join(d.getVar("DL_DIR"), localfile)
 
     pub_cache = d.getVar("PUB_CACHE")
+
     flutter_sdk = os.path.join(d.getVar("STAGING_DATADIR_NATIVE"), 'flutter/sdk')
     flutter_sdk_pub_cache = os.path.join(flutter_sdk, '.pub-cache')
 
@@ -347,6 +348,9 @@ python do_compile() {
     pubspec_appname = d.getVar("PUBSPEC_APPNAME")
     if pubspec_appname != pubspec_yaml_appname:
         bb.fatal("Set PUBSPEC_APPNAME to match name value in pubspec.yaml")
+
+    if d.getVar("PUBSPEC_IGNORE_LOCKFILE") == "1" and d.getVar("PUBSPEC_ENFORCE_LOCKFILE") == "1":
+        bb.fatal("Both PUBSPEC_IGNORE_LOCKFILE and PUBSPEC_ENFORCE_LOCKFILE are set which is invalid")
 
     flutter_sdk = d.getVar('FLUTTER_SDK')
 
